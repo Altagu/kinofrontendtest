@@ -1,0 +1,100 @@
+:root {
+    --background-color: #111827;       /* bg-gray-900 */
+    --card-background: #1f2937;          /* bg-gray-800 */
+    --header-footer-color: #000000;      /* bg-black */
+    --text-color: #ffffff;               /* text-white */
+    --primary-accent: #ef4444;           /* text-red-500 */
+    --primary-accent-dark: #b91c1c;      /* hover:bg-red-700 */
+    --input-background: #374151;         /* bg-gray-700 */
+    --focus-ring: #ef4444;               /* focus:ring-red-500 */
+    --link-color: #ef4444;               /* text-red-500 */
+}
+
+/* Global styles */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Heading */
+h1 {
+    margin-bottom: 1.5rem;
+}
+
+/* Navigation controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.controls button {
+    background-color: var(--primary-accent);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: var(--primary-accent-dark);
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: var(--card-background);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: center;
+    border: 1px solid var(--input-background);
+}
+
+th {
+    background-color: var(--input-background);
+    font-weight: 600;
+}
+
+.employee-col {
+    text-align: left;
+    font-weight: 700;
+}
+
+/* Alternating row colors */
+table tr:nth-child(even) {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Ekstra styling for Edit-knappen */
+.edit-btn {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: var(--primary-accent);
+    color: var(--text-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.edit-btn:hover {
+    background-color: var(--primary-accent-dark);
+}

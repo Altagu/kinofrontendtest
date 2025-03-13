@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - KinoXP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+<header class="bg-black py-4 px-6 flex justify-between items-center">
+    <a href="index.html">
+        <h1 class="text-3xl font-bold text-red-500">KinoXP</h1>
+    </a>
+    <nav>
+        <ul class="flex space-x-6">
+            <li><a href="#" class="hover:text-red-500">Home</a></li>
+            <li><a href="#" class="hover:text-red-500">Movies</a></li>
+            <li><a href="#" class="hover:text-red-500">Showtimes</a></li>
+            <li><a href="#" class="hover:text-red-500">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="flex justify-center items-center h-screen">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+        <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+        <form action="#" method="POST" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium">Email</label>
+                <input type="email" id="email" name="email" required
+                       class="w-full mt-1 p-2 bg-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium">Password</label>
+                <input type="password" id="password" name="password" required
+                       class="w-full mt-1 p-2 bg-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none">
+            </div>
+            <button type="submit"
+                    class="w-full bg-red-500 hover:bg-red-700 text-white font-semibold py-2 rounded-lg">Login</button>
+        </form>
+        <p class="text-center text-sm text-gray-400 mt-4">Don't have an account? <a href="#" class="text-red-500 hover:underline">Sign up</a></p>
+    </div>
+</section>
+
+<footer class="bg-black py-6 text-center text-gray-400">
+    <p>&copy; 2025 KinoXP. All rights reserved.</p>
+</footer>
+</body>
+</html>

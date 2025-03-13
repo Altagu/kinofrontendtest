@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Work Schedule Entry</title>
+    <link rel="stylesheet" href="../Css/editWorkSchedule.css">
+</head>
+<body>
+<h1>Edit Work Schedule Entry</h1>
+
+<!-- Dropdown for at vælge en medarbejder -->
+<div class="form-group">
+    <label for="employeeSelect">Select Employee:</label>
+    <select id="employeeSelect">
+        <option value="" disabled selected>Select an employee</option>
+    </select>
+</div>
+
+<!-- Dropdown for at vælge en vagt for den valgte medarbejder -->
+<div class="form-group">
+    <label for="shiftSelect">Select Shift:</label>
+    <select id="shiftSelect">
+        <option value="" disabled selected>Select a shift</option>
+    </select>
+</div>
+
+<!-- Formular til redigering af den valgte vagt -->
+<form id="editScheduleForm">
+    <div class="form-group">
+        <label for="workDate">Work Date:</label>
+        <input type="date" id="workDate" name="workDate" required>
+    </div>
+    <div class="form-group">
+        <label for="startTime">Start Time:</label>
+        <input type="time" id="startTime" name="startTime" required>
+    </div>
+    <div class="form-group">
+        <label for="endTime">End Time:</label>
+        <input type="time" id="endTime" name="endTime" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Task Description:</label>
+        <input type="text" id="description" name="description" required>
+    </div>
+    <br>
+    <button type="submit">Save Changes</button>
+</form>
+
+<script src="../WorkScheduleScripts/EditWorkScheduleScript.js"></script>
+</body>
+</html>

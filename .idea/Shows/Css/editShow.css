@@ -1,0 +1,117 @@
+/* Define the color palette using CSS variables */
+:root {
+    --background-color: #111827;       /* Tailwind bg-gray-900 */
+    --card-background: #1f2937;          /* Tailwind bg-gray-800 */
+    --header-footer-color: #000000;      /* Tailwind bg-black */
+    --text-color: #ffffff;               /* Tailwind text-white */
+    --primary-accent: #ef4444;           /* Tailwind text-red-500 */
+    --primary-accent-dark: #b91c1c;      /* Tailwind hover:bg-red-700 */
+    --input-background: #374151;         /* Tailwind bg-gray-700 */
+    --focus-ring: #ef4444;               /* Tailwind focus:ring-red-500 */
+    --link-color: #ef4444;               /* Tailwind text-red-500 */
+}
+
+/* Global resets and box sizing */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Page Heading */
+h1 {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Container for form and select (centers the elements) */
+div, form {
+    width: 90%;
+    max-width: 600px;
+    margin: 1rem auto;
+}
+
+/* Style for the select element (dropdown) */
+select {
+    background-color: var(--input-background);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    color: var(--text-color);
+    width: 100%;
+    margin: 0.5rem 0 1rem;
+}
+
+select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+/* Form styling */
+form {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Form labels */
+form label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+}
+
+/* Input fields styling */
+input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+/* Button styling */
+button {
+    background-color: var(--primary-accent);
+    color: var(--text-color);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: var(--primary-accent-dark);
+}
+
+/* Link styling (if any links are present) */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

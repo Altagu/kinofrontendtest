@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Now Showing - KinoXP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+<header class="bg-black py-6 px-6 flex justify-between items-center">
+  <a href="index.html">
+    <h1 class="text-3xl font-bold text-red-500">KinoXP</h1>
+  </a>
+  <nav>
+    <ul class="flex space-x-6">
+      <li><a href="index.html" class="hover:text-red-500">Home</a></li>
+      <li><a href="showMovies.html" class="hover:text-red-500">Movies</a></li>
+      <li><a href="#" class="hover:text-red-500">Showtimes</a></li>
+      <li><a href="login.html" class="hover:text-red-500">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="py-12 px-6">
+  <h2 class="text-4xl font-bold text-center mb-8">Now Playing</h2>
+  <div id="movies-container" class="space-y-6">
+    <!-- Movies will be dynamically inserted here -->
+  </div>
+</section>
+
+<!-- Modal Overlay -->
+<div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+  <!-- Modal Container -->
+  <div id="movie-modal" class="bg-gray-800 rounded-lg shadow-xl w-full max-w-4xl max-h-screen overflow-y-auto">
+    <!-- Modal Close Button -->
+    <div class="flex justify-end p-4">
+      <button id="close-modal" class="text-gray-400 hover:text-white text-2xl">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Modal Content -->
+    <div class="p-6">
+      <div class="flex flex-col md:flex-row gap-6">
+        <!-- Left Column -->
+        <div class="w-full md:w-1/3">
+          <img id="modal-poster" class="w-full rounded-lg shadow-lg" src="" alt="Movie Poster">
+
+          <div class="mt-4 bg-gray-700 rounded-lg p-4">
+            <div class="flex items-center mb-3">
+              <div class="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                <span id="modal-rating" class="font-bold">8.5</span>
+              </div>
+              <div class="text-yellow-400 text-sm">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+
+            <div class="space-y-2 text-sm">
+              <p id="modal-duration" class="flex items-center">
+                <i class="far fa-clock mr-2 text-red-500"></i>
+                <span>120 min</span>
+              </p>
+              <p id="modal-age" class="flex items-center">
+                <i class="fas fa-user-shield mr-2 text-red-500"></i>
+                <span>12+</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="w-full md:w-2/3">
+          <h3 id="modal-title" class="text-3xl font-bold mb-2">Movie Title</h3>
+          <p id="modal-genre" class="text-gray-400 mb-4">Genre</p>
+
+          <div class="mb-6">
+            <h4 class="text-xl font-semibold mb-2">Description</h4>
+            <p id="modal-description" class="text-gray-300">Movie description will appear here.</p>
+          </div>
+
+          <div class="mb-6">
+            <h4 class="text-xl font-semibold mb-2">Showtimes</h4>
+            <div id="modal-showtimes" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <div class="flex space-x-4">
+            <a id="more-details-link" href="#" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-center flex items-center">
+              <i class="fas fa-info-circle mr-2"></i>
+              More Details
+            </a>
+            <a id="get-tickets-link" href="#" class="px-4 py-2 bg-red-500 hover:bg-red-600 rounded-lg text-center flex items-center">
+              <i class="fas fa-ticket-alt mr-2"></i>
+              Get Tickets
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-black py-6 text-center text-gray-400">
+  <p>&copy; 2025 KinoXP. All rights reserved.</p>
+</footer>
+
+<script src="showMovies.js"></script>
+</body>
+</html>

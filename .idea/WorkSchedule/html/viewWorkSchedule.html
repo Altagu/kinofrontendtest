@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weekly Work Schedule</title>
+  <link rel="stylesheet" href="../Css/viewWorkSchedule.css">
+</head>
+<body>
+<h1>Weekly Work Schedule</h1>
+
+<!-- Ugenavigation med kun Previous og Next knapper -->
+<div class="controls">
+  <button id="prevWeekBtn">Previous Week</button>
+  <button id="nextWeekBtn">Next Week</button>
+</div>
+
+<!-- Vagtplanstabel -->
+<table>
+  <thead>
+  <tr>
+    <th>Employee</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+    <th>Sunday</th>
+  </tr>
+  </thead>
+  <tbody id="scheduleBody">
+  <!-- Rækker indsættes dynamisk via JavaScript -->
+  </tbody>
+</table>
+
+<!-- Edit-knap i nederste højre hjørne -->
+<button class="edit-btn" onclick="window.location.href='editWorkSchedule.html'">Edit</button>
+
+<script src="../WorkScheduleScripts/ViewWorkScheduleScript.js"></script>
+</body>
+</html>

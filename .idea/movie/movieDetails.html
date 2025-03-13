@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Details | KinoXP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white">
+<header class="bg-black py-4 px-6 flex justify-between items-center shadow-md">
+  <a href="index.html">
+    <h1 class="text-3xl font-bold text-red-500">KinoXP</h1>
+  </a>
+  <nav>
+    <ul class="flex space-x-6">
+      <li><a href="index.html" class="hover:text-red-500">Home</a></li>
+      <li><a href="showMovies.html" class="hover:text-red-500">Movies</a></li>
+      <li><a href="#" class="hover:text-red-500">Showtimes</a></li>
+      <li><a href="login.html" class="hover:text-red-500">Login</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero Section with Backdrop -->
+<div id="movie-backdrop" class="w-full h-64 bg-cover bg-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+</div>
+
+<!-- Main Content -->
+<main class="container mx-auto px-6 -mt-32 relative z-10">
+  <div id="movie-details" class="flex flex-col lg:flex-row gap-8">
+    <!-- Left Column -->
+    <div class="w-full lg:w-1/4">
+      <!-- Movie Poster -->
+      <img id="movie-poster" class="w-full rounded-lg shadow-lg border-2 border-gray-800" src="" alt="Movie Poster">
+
+      <!-- Movie Quick Info -->
+      <div class="mt-6 bg-gray-800 rounded-lg p-4 shadow-lg">
+        <div class="flex items-center mb-4">
+          <div class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center mr-3">
+            <span id="movie-rating" class="font-bold text-lg">8.5</span>
+          </div>
+          <div>
+            <p class="text-sm text-gray-400">User Rating</p>
+            <div class="flex text-yellow-400 text-sm">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-700 pt-4 mt-4">
+          <p id="movie-duration" class="text-gray-300 mb-2 flex items-center">
+            <i class="far fa-clock mr-2 text-red-500"></i>
+            <span>120 min</span>
+          </p>
+          <p id="movie-age" class="text-gray-300 mb-2 flex items-center">
+            <i class="fas fa-user-shield mr-2 text-red-500"></i>
+            <span>12+</span>
+          </p>
+          <p id="release-date" class="text-gray-300 mb-2 flex items-center">
+            <i class="far fa-calendar-alt mr-2 text-red-500"></i>
+            <span>2025</span>
+          </p>
+        </div>
+
+        <!-- Get Tickets Button -->
+        <a href="TicketPurchase.html" class="mt-4 bg-red-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-red-700 block text-center">
+          Get Tickets
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="w-full lg:w-3/4">
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+        <!-- Movie Title and Genre -->
+        <h1 id="movie-title" class="text-4xl font-bold mb-2"></h1>
+        <p id="movie-genre" class="text-lg text-gray-400 mb-6"></p>
+
+        <!-- Tabs Navigation -->
+        <div class="border-b border-gray-700 mb-6">
+          <ul class="flex flex-wrap -mb-px text-sm font-medium text-center">
+            <li class="mr-2">
+              <a href="#overview" class="inline-block p-4 border-b-2 border-red-500 rounded-t-lg text-white">Overview</a>
+            </li>
+            <li class="mr-2">
+              <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-red-500 hover:border-red-500">Cast & Crew</a>
+            </li>
+            <li class="mr-2">
+              <a href="#" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-red-500 hover:border-red-500">Reviews</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Movie Description -->
+        <div id="overview">
+          <h2 class="text-2xl font-semibold mb-4">Plot Summary</h2>
+          <p id="movie-description" class="text-gray-300 mb-8 text-lg leading-relaxed"></p>
+
+          <!-- Movie Trailer -->
+          <div id="trailer-container" class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4 flex items-center">
+              <i class="fas fa-film mr-2 text-red-500"></i>
+              Watch Trailer
+            </h2>
+            <div class="relative overflow-hidden rounded-lg shadow-lg">
+              <iframe id="movie-trailer" class="w-full aspect-video" src="" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <!-- Photos Section -->
+          <div id="photos-section" class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4 flex items-center">
+              <i class="fas fa-images mr-2 text-red-500"></i>
+              Photos
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="bg-gray-700 rounded-lg overflow-hidden h-32 flex items-center justify-center">
+                <span class="text-gray-500">Photo 1</span>
+              </div>
+              <div class="bg-gray-700 rounded-lg overflow-hidden h-32 flex items-center justify-center">
+                <span class="text-gray-500">Photo 2</span>
+              </div>
+              <div class="bg-gray-700 rounded-lg overflow-hidden h-32 flex items-center justify-center">
+                <span class="text-gray-500">Photo 3</span>
+              </div>
+              <div class="bg-gray-700 rounded-lg overflow-hidden h-32 flex items-center justify-center">
+                <span class="text-gray-500">Photo 4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="bg-black py-6 text-center text-gray-400">
+  <p>&copy; 2025 KinoXP. All rights reserved.</p>
+</footer>
+
+<script src="movieDetails.js"></script>
+
+</body>
+</html>

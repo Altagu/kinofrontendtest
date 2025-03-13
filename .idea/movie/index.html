@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Theater</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+<header class="bg-black py-6 px-6 flex justify-between items-center">
+    <a href="index.html">
+        <h1 class="text-3xl font-bold text-red-500">KinoXP</h1>
+    </a>
+    <nav>
+        <ul class="flex space-x-6">
+            <li><a href="/" class="hover:text-red-500">Home</a></li>
+            <li><a href="showMovies.html" class="hover:text-red-500">Movies</a></li>
+            <li><a href="#" class="hover:text-red-500">Showtimes</a></li>
+            <li><a href="login.html" class="hover:text-red-500">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="relative h-screen bg-black flex justify-center items-center">
+    <!-- Video Frame (Hidden UI) -->
+    <div class="relative w-full h-full overflow-hidden flex justify-center items-center">
+        <div id="video-container" class="w-[115%] h-[115%] transition-transform duration-700 ease-in-out">
+            <iframe
+                    id="trailer-frame"
+                    class="w-full h-full rounded-lg shadow-lg"
+                    src="https://www.youtube.com/embed/ByXuk9QqQkk?autoplay=1&mute=1&loop=1&playlist=ByXuk9QqQkk&controls=0&modestbranding=1&rel=0&showinfo=0&fs=0&start=5"
+                    title="Studio Ghibli Trailer"
+                    frameborder="0"
+                    allow="autoplay"
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Dark Overlay & Text -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-6">
+        <h2 id="movie-title" class="text-5xl font-bold mb-4 text-white">Spirited Away</h2>
+        <p class="text-lg text-gray-300 mb-6">Experience the magic of Studio Ghibli.</p>
+        <a href="TicketPurchase.html" class="bg-red-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-red-700">
+            Get Tickets
+        </a>
+    </div>
+
+    <!-- Left Arrow -->
+    <button onclick="prevTrailer()"
+            class="absolute left-6 top-1/2 transform -translate-y-1/2 bg-gray-700 bg-opacity-30 p-3 rounded-full text-white text-2xl hover:bg-opacity-60 transition duration-300">
+        ❮
+    </button>
+
+    <!-- Right Arrow -->
+    <button onclick="nextTrailer()"
+            class="absolute right-6 top-1/2 transform -translate-y-1/2 bg-gray-700 bg-opacity-30 p-3 rounded-full text-white text-2xl hover:bg-opacity-60 transition duration-300">
+        ❯
+    </button>
+</section>
+
+<section class="py-12 px-6">
+    <h2 class="text-4xl font-bold text-center mb-8">Now Playing</h2>
+    <div id="movies-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Movies will be dynamically inserted here -->
+    </div>
+</section>
+
+<footer class="bg-black py-6 text-center text-gray-400">
+    <p>&copy; 2025 KinoXP. All rights reserved.</p>
+</footer>
+
+<script src="index.js"></script>
+</body>
+</html>

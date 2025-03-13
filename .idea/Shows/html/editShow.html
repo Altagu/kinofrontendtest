@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/editShow.css">
+    <title>Edit Show</title>
+</head>
+<body>
+<h1>Edit Show</h1>
+
+<!-- Select a show -->
+<div>
+    <label for="showSelector">Select a show:</label>
+    <select id="showSelector">
+        <option value="" disabled selected>Select a show</option>
+        <!-- Options will be inserted dynamically -->
+    </select>
+</div>
+
+<!-- Edit form -->
+<form id="editForm">
+    <div>
+        <label for="movieId">Movie ID:</label>
+        <input type="number" id="movieId" name="movieId" required>
+    </div>
+    <div>
+        <label for="theatreId">Theatre ID:</label>
+        <input type="number" id="theatreId" name="theatreId" required>
+    </div>
+    <div>
+        <label for="showDate">Show Date:</label>
+        <input type="date" id="showDate" name="showDate" required>
+    </div>
+    <div>
+        <label for="showTime">Show Time:</label>
+        <input type="time" id="showTime" name="showTime" required>
+    </div>
+    <br>
+    <button type="submit">Save Changes</button>
+</form>
+
+<!-- Link to your JavaScript file -->
+<script src="../showScript/editShowScript.js"></script>
+
+
+</body>
+</html>

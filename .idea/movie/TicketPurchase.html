@@ -1,0 +1,413 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #111827;
+            color: #ffffff;
+        }
+        h1, h2, h3 {
+            color: #737373;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .show-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .show-card:hover {
+            background-color: #b91c1c;
+        }
+        .selected-show {
+            background-color:#ef4444;
+            border-color: #00acc1;
+        }
+
+        .booking-section {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .customer-info {
+            flex: 1;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #1f2937;
+        }
+
+        .seating-section {
+            display: flex;
+            flex-direction: column;
+            background-color: #1f2937;
+            flex: 2;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #374151;
+            color: white;
+        }
+
+        .booking-summary {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #1f2937;
+            border-radius: 5px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .seat-container {
+            display: grid;
+            gap: 5px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        .seat {
+            width: 30px;
+            height: 30px;
+            background-color: #a5d6a7;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .seat.occupied {
+            background-color: #ef9a9a;
+            cursor: not-allowed;
+        }
+        .seat.selected {
+            background-color: #42a5f5;
+            color: white;
+        }
+        .row-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .screen {
+            height: 30px;
+            background-color: #ccc;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .legend {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+
+        #bookNowBtn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        #bookNowBtn:hover {
+            background-color: #388e3c;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Book Your Ticket</h1>
+
+<!-- Shows Grid -->
+<div id="showsGrid" class="grid-container"></div>
+
+<!-- Booking Section (Hidden until show is selected) -->
+<div id="bookingSection" class="booking-section hidden">
+    <!-- Customer Information -->
+    <div class="customer-info">
+        <h3>Customer Information</h3>
+        <div class="form-group">
+            <label for="customerName">Full Name</label>
+            <input type="text" id="customerName" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+            <label for="customerPhone">Phone Number</label>
+            <input type="tel" id="customerPhone" placeholder="Enter your phone number">
+        </div>
+
+        <div id="bookingSummary" class="booking-summary hidden">
+            <h3>Booking Summary</h3>
+            <div id="summaryContent"></div>
+        </div>
+
+        <button id="bookNowBtn">Book Now</button>
+    </div>
+
+    <!-- Seat Selection -->
+    <div class="seating-section">
+        <h3>Select Your Seats</h3>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box" style="background-color: #a5d6a7;"></div>
+                <span>Available</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background-color: #ef9a9a;"></div>
+                <span>Occupied</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background-color: #42a5f5;"></div>
+                <span>Selected</span>
+            </div>
+        </div>
+
+        <div id="screenArea"></div>
+        <div id="seatLayout" class="seat-container"></div>
+    </div>
+</div>
+
+<script>
+    const API_URL = "kinofullstack-epcfgehdhse5eufz.northeurope-01.azurewebsites.net"
+
+
+    let selectedShow = null;
+    let selectedSeats = [];
+
+    // Fetch available shows
+    fetch("${API_URL}/api/shows")
+        .then(response => response.json())
+        .then(shows => {
+            const showsGrid = document.getElementById("showsGrid");
+            shows.forEach(show => {
+                const showCard = document.createElement("div");
+                showCard.classList.add("show-card");
+                showCard.innerHTML = `<strong>${show.movieTitle}</strong><br>${show.showDate} - ${show.showTime}<br>Theatre: ${show.theatreName}`;
+                showCard.onclick = () => selectShow(show, showCard);
+                showsGrid.appendChild(showCard);
+            });
+        })
+        .catch(error => console.error("Error fetching shows:", error));
+
+
+    // Select a show and fetch seat layout
+    function selectShow(show, element) {
+        console.log("Selected show:", show);
+        document.querySelectorAll(".show-card").forEach(card => card.classList.remove("selected-show"));
+        element.classList.add("selected-show");
+        selectedShow = show;
+        selectedSeats = [];
+
+        // Show booking section
+        document.getElementById("bookingSection").classList.remove("hidden");
+
+        // Reset form
+        document.getElementById("customerName").value = "";
+        document.getElementById("customerPhone").value = "";
+
+        // Hide booking summary until seats are selected
+        document.getElementById("bookingSummary").classList.add("hidden");
+
+        // Fetch seats
+        fetchSeats(show.theatreId, show.id);
+
+        // Add screen indication
+        const screenArea = document.getElementById("screenArea");
+        screenArea.innerHTML = `<div class="screen">SCREEN</div>`;
+    }
+
+    // Fetch seat layout
+    function fetchSeats(theatreId, showId) {
+        // Include both theatreId and showId in the API call
+        fetch(`${API_URL}/api/shows/theatres/${theatreId}/shows/${showId}/seats`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch seats');
+                }
+                return response.json();
+            })
+            .then(seats => {
+                const seatLayout = document.getElementById("seatLayout");
+                seatLayout.innerHTML = "";
+
+                // Add debugging to see the data structure
+                console.log("Seat data:", seats);
+
+                // Make sure we're iterating through the data correctly
+                if (Array.isArray(seats)) {
+                    // Calculate number of seats per row (columns)
+                    const seatsPerRow = seats[0].length;
+
+                    // Dynamically set the grid template columns based on seatsPerRow
+                    seatLayout.style.gridTemplateColumns = `repeat(${seatsPerRow}, 30px)`;
+
+                    // Create the seat grid
+                    seats.forEach((row, rowIndex) => {
+                        // Add row label (commented out as we're not adding labels)
+                        // const rowLabel = document.createElement("div");
+                        // rowLabel.classList.add("row-label");
+                        // rowLabel.innerText = String.fromCharCode(65 + rowIndex); // Convert to A, B, C, etc.
+
+                        row.forEach((seat, seatIndex) => {
+                            const seatDiv = document.createElement("div");
+                            seatDiv.classList.add("seat");
+                            if (seat === 1) seatDiv.classList.add("occupied");
+                            seatDiv.onclick = () => toggleSeatSelection(rowIndex, seatIndex, seatDiv);
+                            seatDiv.innerText = seatIndex + 1;
+                            seatLayout.appendChild(seatDiv);
+                        });
+                    });
+                } else {
+                    console.error("Unexpected seat data format:", seats);
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching seats:", error);
+                // Display error message to user
+                const seatLayout = document.getElementById("seatLayout");
+                seatLayout.innerHTML = "<p>Error loading seats. Please try again.</p>";
+            });
+    }
+
+    // Toggle seat selection
+    function toggleSeatSelection(row, seat, element) {
+        if (element.classList.contains("occupied")) return;
+        const seatKey = `${row}-${seat}`;
+        if (selectedSeats.includes(seatKey)) {
+            selectedSeats = selectedSeats.filter(s => s !== seatKey);
+            element.classList.remove("selected");
+        } else {
+            selectedSeats.push(seatKey);
+            element.classList.add("selected");
+        }
+
+        // Update booking summary
+        updateBookingSummary();
+    }
+
+    // Update booking summary
+    function updateBookingSummary() {
+        const summaryDiv = document.getElementById("bookingSummary");
+        const summaryContent = document.getElementById("summaryContent");
+
+        if (selectedSeats.length > 0) {
+            summaryDiv.classList.remove("hidden");
+
+            const seatNames = selectedSeats.map(seat => {
+                const [row, seatNum] = seat.split('-');
+                return `Row ${parseInt(row) + 1}, Seat ${parseInt(seatNum) + 1}`;
+            });
+
+            summaryContent.innerHTML = `
+                <p><strong>Movie:</strong> ${selectedShow.movieTitle}</p>
+                <p><strong>Date & Time:</strong> ${selectedShow.showDate} at ${selectedShow.showTime}</p>
+                <p><strong>Theatre:</strong> ${selectedShow.theatreName}</p>
+                <p><strong>Selected Seats (${selectedSeats.length}):</strong><br>
+                    ${seatNames.join('<br>')}
+                </p>
+                <p><strong>Total Price:</strong> ${(selectedSeats.length * 120).toFixed(2)} dkk</p>
+            `;
+        } else {
+            summaryDiv.classList.add("hidden");
+        }
+    }
+
+    // Book tickets
+    document.getElementById("bookNowBtn").onclick = () => {
+        if (!selectedShow || selectedSeats.length === 0) {
+            alert("Please select a show and at least one seat.");
+            return;
+        }
+
+        const customerName = document.getElementById("customerName").value.trim();
+        const customerPhone = document.getElementById("customerPhone").value.trim();
+
+        if (!customerName || !customerPhone) {
+            alert("Please fill in all customer information");
+            return;
+        }
+
+        const bookingData = {
+            showId: selectedShow.id,
+            customerName: customerName,
+            customerPhone: customerPhone,
+            seats: selectedSeats
+        };
+
+        fetch("${API_URL}/api/shows/reservations", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bookingData)
+        })
+            .then(response => response.text())
+            .then(data => {
+                alert(data || "Booking successful!");
+                // Refresh seat layout after booking
+                fetchSeats(selectedShow.theatreId, selectedShow.id);
+                selectedSeats = [];
+                // Reset booking summary
+                document.getElementById("bookingSummary").classList.add("hidden");
+            })
+            .catch(error => {
+                console.error("Error booking tickets:", error);
+                alert("Error booking tickets. Please try again.");
+            });
+    };
+</script>
+</body>
+</html>
